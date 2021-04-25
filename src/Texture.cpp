@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Texture.h"
 
 #include "stb_image/stb_image.h"
@@ -5,6 +7,9 @@
 Texture::Texture(const std::string& path)
 	: m_RenderingID(0), m_Filepath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
 {
+	// TODO: remove (DEBUG)
+	std::cout << "Creating a texture... path=" << path << std::endl;
+
 	stbi_set_flip_vertically_on_load(1); // Because the bottom left in OpenGL is 0,0
 	m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
 
@@ -27,6 +32,8 @@ Texture::Texture(const std::string& path)
 
 Texture::~Texture()
 {
+	// TODO remove (DEBUG)
+	std::cout << "Deleting a Texture object with path " << m_Filepath << std::endl;
 	GLCall(glDeleteTextures(1, &m_RenderingID));
 }
 
