@@ -4,6 +4,7 @@
 #include "TestMenu.h"
 
 namespace test {
+
 	test::TestMenu::TestMenu(Test*& currentTestPtr)
 		: m_CurrentTest(currentTestPtr)
 	{

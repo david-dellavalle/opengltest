@@ -23,6 +23,7 @@
 #include "test/TestTexture.h"
 #include "test/TestMVP.h"
 #include "test/TestMenu.h"
+#include "test/TestAsteroid.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -98,6 +99,7 @@ int main()
 	menu->RegisterTest<test::TestClearColor>("Clear Color");
 	menu->RegisterTest<test::TestTexture>("Texture");
 	menu->RegisterTest<test::TestMVP>("MVP");
+	menu->RegisterTest<test::TestAsteroid>("Asteroid");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))

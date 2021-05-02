@@ -4,9 +4,6 @@
 #include <imgui/imgui_impl_opengl3.h>
 #include <glm/gtx/transform.hpp>
 
-namespace test 
-{
-
 	static float vertices[] = {
 		0.0f,   0.0f,   0.0f, 0.0f,
 		100.0f, 0.0f,   1.0f, 0.0f,
@@ -18,17 +15,19 @@ namespace test
 		2, 3, 0,
 	};
 
+namespace test {
+
 	TestMVP::TestMVP()
 		: modelTranslationA(glm::vec3(480.0f, 140.0f, 0.0f)),
 		modelTranslationB(glm::vec3(250.0f, 300.0f, 0.0f)),
 		m_ViewMatrix(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f))),
-		m_ProjectionMatrix(glm::ortho(0.0f, 800.0f, 0.0f, 600.0f))
+		m_ProjectionMatrix(glm::ortho(0.0f, 800.0f, 0.0f, 600.0f)),
+		m_VAO(std::make_unique<VertexArray>()),
+		m_VBO(std::make_unique<VertexBuffer>(vertices, sizeof(vertices))),
+		m_IBO(std::make_unique<IndexBuffer>(indices, 6))
 	{
 		m_Texture = std::make_unique<Texture>("res/textures/pfp.png");
 		m_Shader = std::make_unique<Shader>("res/shaders/basic.shader");
-		m_VAO = std::make_unique<VertexArray>();
-		m_VBO = std::make_unique<VertexBuffer>(vertices, sizeof(vertices));
-		m_IBO = std::make_unique<IndexBuffer>(indices, 6);
 
 		VertexBufferLayout layout;
 		layout.Push<float>(2);

@@ -163,6 +163,7 @@
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\test\Test.h" />
+    <ClInclude Include="src\test\TestAsteroid.h" />
     <ClInclude Include="src\test\TestClearColor.h" />
     <ClInclude Include="src\test\TestMenu.h" />
     <ClInclude Include="src\test\TestMVP.h" />
@@ -465,7 +466,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
-    <None Include="res\shaders\yellow.shader" />
+    <None Include="res\shaders\one-color.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />
     <None Include="src\vendor\glm\detail\func_exponential.inl" />
@@ -609,6 +610,7 @@
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="src\test\TestAsteroid.cpp" />
     <ClCompile Include="src\test\TestClearColor.cpp" />
     <ClCompile Include="src\test\TestMenu.cpp" />
     <ClCompile Include="src\test\TestMVP.cpp" />
