@@ -29,7 +29,12 @@ namespace test {
 		std::unique_ptr<IndexBuffer> m_IBO;
 		std::unique_ptr<Shader> m_Shader;
 
+		//glm::mat4 m_ModelViewMatrix;
 		glm::mat4 m_ProjectionMatrix;
+		glm::mat4 m_ViewMatrix;
+		glm::mat4 m_MVP;
+
+		glm::vec3 m_CameraOffset;
 
 	};
 

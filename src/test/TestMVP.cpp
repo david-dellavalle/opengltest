@@ -15,6 +15,7 @@
 		2, 3, 0,
 	};
 
+
 namespace test {
 
 	TestMVP::TestMVP()
@@ -43,7 +44,6 @@ namespace test {
 
 	void TestMVP::OnUpdate(float timeDelta)
 	{
-
 	}
 
 	void TestMVP::OnRender()

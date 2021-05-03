@@ -9,19 +9,22 @@
 #include "TestAsteroid.h"
 #include "Renderer.h"
 #include "VertexBufferLayout.h"
+#include "input/Keys.h"
 
 
 namespace test {
 
-	int asteroidNumVert = 10;
-	int asteroidVariance = 10;
-	int asteroidRadius = 100;
-	float asteroidPosition[2] = { 0.0f, 0.0f };
+	static int asteroidNumVert = 10;
+	static int asteroidVariance = 10;
+	static int asteroidRadius = 100;
+	static float asteroidPosition[2] = { 0.0f, 0.0f };
 
 	TestAsteroid::TestAsteroid()
 		: m_VAO(std::make_unique<VertexArray>()),
 		m_Shader(std::make_unique<Shader>("res/shaders/one-color.shader")),
-		m_ProjectionMatrix(glm::ortho(-400.0f, 400.0f, -300.0f, 300.0f))
+		m_ProjectionMatrix(glm::ortho(0.0f, 800.0f, 0.0f, 600.0f)),
+		m_ViewMatrix(glm::translate(glm::vec3(0.0f, 100.0f, 0.0f))),
+		m_CameraOffset(glm::vec3(0.0f, 0.0f, 0.0f))
 	{
 
 		TEST_ApplyAsteroid();
@@ -36,7 +39,8 @@ namespace test {
 		m_IBO->Bind();
 
 		m_Shader->SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-		m_Shader->SetUniformMat4f("u_ModelViewProjectionMatrix", m_ProjectionMatrix);
+		m_MVP = m_ProjectionMatrix * m_ViewMatrix;
+		m_Shader->SetUniformMat4f("u_ModelViewProjectionMatrix", m_MVP);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
@@ -47,12 +51,33 @@ namespace test {
 
 	void TestAsteroid::OnUpdate(float timeDelta)
 	{
+		if (Keys::getKey('W'))
+		{
+			m_CameraOffset.y -= 280 * timeDelta;
+		}
+		if (Keys::getKey('A'))
+		{
+			m_CameraOffset.x += 280 * timeDelta;
+		}
+		if (Keys::getKey('S'))
+		{
+			m_CameraOffset.y += 280 * timeDelta;
+		}
+		if (Keys::getKey('D'))
+		{
+			m_CameraOffset.x -= 280 * timeDelta;
+		}
+
+		m_ViewMatrix = glm::translate(m_CameraOffset);
 	}
 
 	void TestAsteroid::OnRender()
 	{
 		Renderer renderer;
 		renderer.Clear();
+
+		m_MVP = m_ProjectionMatrix * m_ViewMatrix;
+		m_Shader->SetUniformMat4f("u_ModelViewProjectionMatrix", m_MVP);
 		
 		// Enable wireframe made
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

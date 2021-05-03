@@ -160,6 +160,8 @@
     <ClInclude Include="Dependencies\include\GLFW\glfw3native.h" />
     <ClInclude Include="Dependencies\include\KHR\khrplatform.h" />
     <ClInclude Include="src\IndexBuffer.h" />
+    <ClInclude Include="src\input\Keys.h" />
+    <ClInclude Include="src\input\Mouse.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\test\Test.h" />
@@ -607,6 +609,8 @@
   <ItemGroup>
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\IndexBuffer.cpp" />
+    <ClCompile Include="src\input\Keys.cpp" />
+    <ClCompile Include="src\input\Mouse.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Source.cpp" />
